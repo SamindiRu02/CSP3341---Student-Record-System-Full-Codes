@@ -140,6 +140,7 @@ public sealed class MainForm : Form
         studentBox.Controls.Add(btnCreate);
 
         lblStudent.Text = "No student selected.";
+        lblStudent.Font = new Font("Segoe UI", 10, FontStyle.Bold);
         lblStudent.AutoSize = true;
         lblStudent.ForeColor = navy;
         lblStudent.Location = new Point(20, 130);
