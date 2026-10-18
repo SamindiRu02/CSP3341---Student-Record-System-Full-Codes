@@ -5,8 +5,8 @@ public sealed class Enrolment
     public Course Course { get; }
     public decimal Mark { get; }
 
-    // Set the grade based on the students mark
-    public string Grade =>
+    // Determine the grade absed on the student's mark
+    public string Grade =>  
         Mark >= 80 ? "HD" :
         Mark >= 70 ? "D" :
         Mark >= 60 ? "CR" :
