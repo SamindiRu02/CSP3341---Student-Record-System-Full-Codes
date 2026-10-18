@@ -49,11 +49,15 @@ public sealed class Student
 
     public bool RemoveEnrolment(string courseCode)
     {
+        if (string.IsNullOrWhiteSpace(courseCode))
+            return false;
+
         return _enrolments.RemoveAll(e =>
             e.Course.Code.Equals(
-                courseCode,
-                StringComparison.OrdinalIgnoreCase)) > 0;
+                courseCode.Trim(),
+                StringComparison.Ordinal)) > 0;
     }
+
 
     // Calculate the weighted average mark for the student
     public decimal CalculateWAM()
