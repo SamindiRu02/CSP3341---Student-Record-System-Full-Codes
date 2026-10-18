@@ -13,6 +13,10 @@ public sealed class Course
         if (string.IsNullOrWhiteSpace(code))
             throw new ArgumentException("Course code is required.");
 
+        if (code.Any(char.IsWhiteSpace))
+            throw new ArgumentException(
+                "Course code cannot contain spaces.");
+
         if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException("Course name is required.");
 
