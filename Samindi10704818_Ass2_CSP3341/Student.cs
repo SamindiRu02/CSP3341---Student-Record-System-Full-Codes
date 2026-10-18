@@ -10,7 +10,7 @@ public sealed class Student
     public string FullName { get; } //Gets the student full name
     public string Status { get; } //Gets the student's current status
 
-    //Gets enrolment records
+    //Get enrolment records
     public IReadOnlyList<Enrolment> Enrolments =>
         _enrolments.AsReadOnly();
 
@@ -30,7 +30,7 @@ public sealed class Student
         Status = status.Trim();
     }
 
-    //Adds a course enrolment and prevents duplicate courses
+    //Add a course enrolment and prevents duplicate courses
     public void AddEnrolment(Enrolment enrolment)
     {
         ArgumentNullException.ThrowIfNull(enrolment);
