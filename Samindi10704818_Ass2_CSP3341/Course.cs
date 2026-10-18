@@ -1,5 +1,7 @@
-﻿namespace StudentRecordSystem;
+﻿
+namespace StudentRecordSystem;
 
+// Represent a course and stores values for the name, code, and credit value.
 public sealed class Course
 {
     public string Code { get; }
