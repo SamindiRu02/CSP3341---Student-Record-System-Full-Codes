@@ -55,6 +55,7 @@ public sealed class Student
                 StringComparison.OrdinalIgnoreCase)) > 0;
     }
 
+    // Calculate the weighted average mark for the student
     public decimal CalculateWAM()
     {
         if (_enrolments.Count == 0)
