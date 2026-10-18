@@ -340,6 +340,13 @@ public sealed class MainForm : Form
     {
         string id = txtSearch.Text.Trim();
 
+        // To check if the student ID is entered
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            ShowError("Please enter a Student ID to search.");
+            return;
+        }
+
         if (students.TryGetValue(id, out Student? student))
         {
             SelectStudent(student);
