@@ -15,11 +15,13 @@ namespace StudentRecordSystem;
 
 public sealed class MainForm : Form
 {
+    // Keep the student record indexed by ID
     private readonly Dictionary<string, Student> students =
         new(StringComparer.OrdinalIgnoreCase);
 
     private Student? currentStudent;
 
+    // Save records in the local application data folder
     private readonly string dataFile = Path.Combine(
         Environment.GetFolderPath(
             Environment.SpecialFolder.LocalApplicationData),
@@ -44,6 +46,8 @@ public sealed class MainForm : Form
     private readonly Color navy = Color.FromArgb(30, 58, 95);
     private readonly Color blue = Color.FromArgb(37, 99, 235);
 
+
+    // Set up the new window and load saved records
     public MainForm()
     {
         Text = "Student Record System";
@@ -57,6 +61,7 @@ public sealed class MainForm : Form
         LoadRecords();
     }
 
+    // Build the main sections of the form
     private void BuildInterface()
     {
         var main = new TableLayoutPanel
@@ -71,6 +76,7 @@ public sealed class MainForm : Form
         main.ColumnStyles.Add(
             new ColumnStyle(SizeType.Percent, 100));
 
+        // Giving the enough vertical space
         int[] heights = { 80, 185, 110, 220, 300 };
 
         foreach (int height in heights)
@@ -183,6 +189,7 @@ public sealed class MainForm : Form
                       AnchorStyles.Left |
                       AnchorStyles.Right;
 
+        // To show enrolments without allowing direct table edits
         grid.ReadOnly = true;
         grid.AllowUserToAddRows = false;
         grid.AllowUserToDeleteRows = false;
@@ -289,6 +296,7 @@ public sealed class MainForm : Form
         return button;
     }
 
+    // Register a student after checking details
     private void CreateStudent(object? sender, EventArgs e)
     {
         try
@@ -326,6 +334,7 @@ public sealed class MainForm : Form
         }
     }
 
+    // To find a student using their student ID
     private void SearchStudent(object? sender, EventArgs e)
     {
         string id = txtSearch.Text.Trim();
@@ -340,6 +349,7 @@ public sealed class MainForm : Form
         }
     }
 
+    // To show the selected student and the course
     private void SelectStudent(Student student)
     {
         currentStudent = student;
@@ -356,6 +366,7 @@ public sealed class MainForm : Form
         lblWam.Text = "Weighted Average: —";
     }
 
+    // To add a course to selected student
     private void AddEnrolment(object? sender, EventArgs e)
     {
         if (currentStudent is null)
@@ -416,6 +427,7 @@ public sealed class MainForm : Form
         }
     }
 
+    // To reload the table
     private void RefreshGrid()
     {
         grid.Rows.Clear();
@@ -434,6 +446,7 @@ public sealed class MainForm : Form
         }
     }
 
+    // To remove selected course
     private void RemoveSelectedEnrolment(
         object? sender, EventArgs e)
     {
@@ -466,6 +479,7 @@ public sealed class MainForm : Form
         }
     }
 
+    // To calculate and display the weighted average mark
     private void CalculateWam(object? sender, EventArgs e)
     {
         if (currentStudent is null)
@@ -487,7 +501,7 @@ public sealed class MainForm : Form
         }
     }
 
-    // Save all student records as JSON.
+    // To save all student records as JSON.
     private bool SaveRecords()
     {
         try
